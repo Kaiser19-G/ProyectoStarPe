@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil de Usuario - Restaurant Rating Forum</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/custom-bootstrap.css">
+</head>
+
+<body>
+  <header>
+    <!-- Include header component here -->
+  </header>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Perfil de Usuario</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Información Personal</h3>
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="username" placeholder="Tu nombre de usuario">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Tu contraseña">
+          </div>
+          <button type="submit" class="btn btn-primary">Actualizar Información</button>
+        </form>
+      </div>
+      <div class="col-md-8">
+        <h3>Mis Reseñas</h3>
+        <div id="reviews">
+          <!-- User's reviews will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <!-- Include footer component here -->
+  </footer>
+  
+  <script src="/js/main.js"></script>
+</body>
+</html>

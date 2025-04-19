@@ -1,18 +1,29 @@
-// This file handles location-related functionality including geolocation permissions and distance calculations
+/**
+ * Geolocalizacion.js
+ * 
+ * Este archivo maneja toda la funcionalidad relacionada con la ubicación del usuario:
+ * - Solicitar y gestionar permisos de geolocalización
+ * - Almacenar datos de ubicación en sessionStorage
+ * - Calcular distancias entre la ubicación del usuario y los restaurantes
+ * - Actualizar la interfaz de usuario según el estado de la ubicación
+ */
 
 document.addEventListener('DOMContentLoaded', function() {
     const locationAlert = document.getElementById('locationAlert');
     const enableLocationBtn = document.getElementById('enableLocation');
     
-    // Check if geolocation is already available in the session
+    // Verificar si ya hay datos de geolocalización almacenados en la sesión
     checkStoredLocation();
     
-    // Add event listener to the location button
+    // Configurar el evento para el botón de habilitar ubicación
     if (enableLocationBtn) {
         enableLocationBtn.addEventListener('click', requestUserLocation);
     }
     
-    // Function to request user's location
+    /**
+     * Solicita la ubicación del usuario utilizando la API de Geolocalización
+     * Si el navegador soporta geolocalización, se solicita la posición del usuario
+     */
     function requestUserLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -20,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleLocationError
             );
         } else {
-            // The browser doesn't support geolocation
+            // El navegador no soporta la geolocalización
             updateLocationAlert(
                 'warning',
                 '<i class="fas fa-exclamation-triangle me-2"></i>' +
@@ -29,9 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Handle successful location retrieval
+    /**
+     * Maneja la respuesta exitosa al obtener la ubicación del usuario
+     * @param {GeolocationPosition} position - Objeto de posición proporcionado por la API de Geolocalización
+     */
     function handleLocationSuccess(position) {
-        // Store location data in sessionStorage for future use
+        // Almacenar datos de ubicación en sessionStorage para uso futuro
         const locationData = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -40,23 +54,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         sessionStorage.setItem('userLocation', JSON.stringify(locationData));
         
-        // Update the UI to show success message
+        // Actualizar la interfaz para mostrar mensaje de éxito
         updateLocationAlert(
             'success',
             '<i class="fas fa-check-circle me-2"></i>' +
             '<strong>¡Ubicación activada!</strong> Ahora te mostraremos los restaurantes más cercanos.'
         );
         
-        // Update restaurant distances based on user location
+        // Actualizar las distancias de los restaurantes según la ubicación del usuario
         updateRestaurantDistances(position.coords.latitude, position.coords.longitude);
     }
     
-    // Handle errors when retrieving location
+    /**
+     * Maneja los errores al intentar obtener la ubicación del usuario
+     * @param {GeolocationPositionError} error - Error generado por la API de Geolocalización
+     */
     function handleLocationError(error) {
         console.error('Error al obtener la ubicación:', error);
         
         let errorMessage = '<strong>No pudimos acceder a tu ubicación.</strong> ';
         
+        // Proporcionar mensaje específico según el tipo de error
         switch(error.code) {
             case error.PERMISSION_DENIED:
                 errorMessage += 'Has denegado el permiso de ubicación.';
@@ -79,20 +97,27 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
     
-    // Update the location alert with appropriate styling and message
+    /**
+     * Actualiza el elemento de alerta de ubicación con un estilo y mensaje apropiados
+     * @param {string} alertType - Tipo de alerta (success, warning, danger, info)
+     * @param {string} message - Contenido HTML del mensaje a mostrar
+     */
     function updateLocationAlert(alertType, message) {
         if (locationAlert) {
             locationAlert.innerHTML = message + 
                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
             
-            // Reset all alert classes
+            // Restablecer todas las clases de alerta
             locationAlert.classList.remove('alert-info', 'alert-success', 'alert-warning', 'alert-danger');
-            // Add the specific alert class
+            // Añadir la clase de alerta específica
             locationAlert.classList.add(`alert-${alertType}`);
         }
     }
     
-    // Check if we already have location stored and update UI accordingly
+    /**
+     * Verifica si ya hay datos de ubicación almacenados y actualiza la interfaz
+     * @returns {boolean} - True si se encontraron y utilizaron datos de ubicación válidos
+     */
     function checkStoredLocation() {
         const storedLocation = sessionStorage.getItem('userLocation');
         
@@ -102,16 +127,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const timestamp = locationData.timestamp;
                 const currentTime = new Date().getTime();
                 
-                // If location data is less than 30 minutes old, use it
+                // Si los datos de ubicación tienen menos de 30 minutos, los utilizamos
                 if (currentTime - timestamp < 30 * 60 * 1000) {
-                    // Update the UI to show we already have location
+                    // Actualizar la interfaz para mostrar que ya tenemos la ubicación
                     updateLocationAlert(
                         'success',
                         '<i class="fas fa-check-circle me-2"></i>' +
                         '<strong>¡Ubicación activa!</strong> Estamos mostrando los restaurantes más cercanos a ti.'
                     );
                     
-                    // Update restaurant distances
+                    // Actualizar las distancias de los restaurantes
                     updateRestaurantDistances(locationData.latitude, locationData.longitude);
                     return true;
                 }
@@ -123,31 +148,43 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     }
     
-    // Update restaurant distances based on user location
+    /**
+     * Actualiza las distancias mostradas en las tarjetas de restaurantes
+     * @param {number} latitude - Latitud de la ubicación del usuario
+     * @param {number} longitude - Longitud de la ubicación del usuario
+     */
     function updateRestaurantDistances(latitude, longitude) {
-        const restaurantCards = document.querySelectorAll('.card');
+        const restaurantCards = document.querySelectorAll('.card[data-latitude][data-longitude]');
         
         restaurantCards.forEach(card => {
-            // In a real application, each restaurant would have data attributes
-            // with their latitude and longitude
             const restaurantLat = parseFloat(card.dataset.latitude);
             const restaurantLng = parseFloat(card.dataset.longitude);
+            const restaurantName = card.dataset.name || 'Restaurante';
             
             if (!isNaN(restaurantLat) && !isNaN(restaurantLng)) {
                 const distance = calculateDistance(latitude, longitude, restaurantLat, restaurantLng);
                 
-                // Find the distance element within the card and update it
-                const distanceElement = card.querySelector('.restaurant-distance');
+                // Encuentra el elemento que muestra la información de distancia
+                const distanceElement = card.querySelector('.card-text.text-muted.small:has(i.fa-map-marker-alt)');
                 if (distanceElement) {
                     distanceElement.innerHTML = `<i class="fas fa-map-marker-alt me-2"></i>A ${distance.toFixed(1)} km de ti`;
                 }
+                
+                console.log(`Distancia a ${restaurantName}: ${distance.toFixed(2)} km`);
             }
         });
     }
     
-    // Calculate distance between two coordinates using the Haversine formula
+    /**
+     * Calcula la distancia entre dos coordenadas geográficas usando la fórmula de Haversine
+     * @param {number} lat1 - Latitud del punto 1 (usuario)
+     * @param {number} lon1 - Longitud del punto 1 (usuario)
+     * @param {number} lat2 - Latitud del punto 2 (restaurante)
+     * @param {number} lon2 - Longitud del punto 2 (restaurante)
+     * @returns {number} - Distancia en kilómetros entre los dos puntos
+     */
     function calculateDistance(lat1, lon1, lat2, lon2) {
-        const R = 6371; // Radius of the earth in km
+        const R = 6371; // Radio de la Tierra en km
         const dLat = deg2rad(lat2 - lat1);
         const dLon = deg2rad(lon2 - lon1);
         const a = 
@@ -155,10 +192,15 @@ document.addEventListener('DOMContentLoaded', function() {
             Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
             Math.sin(dLon/2) * Math.sin(dLon/2); 
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-        const distance = R * c; // Distance in km
+        const distance = R * c; // Distancia en km
         return distance;
     }
     
+    /**
+     * Convierte grados a radianes, necesario para cálculos geográficos
+     * @param {number} deg - Ángulo en grados
+     * @returns {number} - Ángulo en radianes
+     */
     function deg2rad(deg) {
         return deg * (Math.PI/180);
     }

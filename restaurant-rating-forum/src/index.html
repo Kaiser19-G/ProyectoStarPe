@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,25 +7,25 @@
   <title>StarPe - Foro de Calificaciones de Restaurantes</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../public/css/main.css">
-  <link rel="stylesheet" href="../public/css/custom-bootstrap.css">
+  <link rel="stylesheet" href="../public/css/estilos.css">
 </head>
 
 <body>
+
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-      <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed-top">
+      <div class="container-xxl">
         <a class="navbar-brand fw-bold" href="index.html">
-          <span class="text-primary">Star</span><span class="text-dark">.Pe</span>
-          <i class="fas fa-star text-danger"></i>
-  <i class="fas fa-star text-white" style="filter: drop-shadow(0px 0px 1px #000);"></i>
-  <i class="fas fa-star text-danger"></i>
+          <span class="text-primary fs-2">Stars</span><span class="text-dark fs-6">.pe</span>
+          <i class="fas fa-star text-danger abc"></i>
+          <i class="fas fa-star text-white abc" style="filter: drop-shadow(0px 0px 1px #000);"></i>
+          <i class="fas fa-star text-danger abc"></i>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-          <span class="navbar-toggler-icon"></span>
+          <span><i class="fa-solid fa-bars"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto pt-2 ms-3 mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link active" href="#">Inicio</a>
             </li>
@@ -34,7 +33,7 @@
               <a class="nav-link" href="#">Explorar</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Mejor Valorados</a>
+              <a class="nav-link" href="#">Mejor valorados</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Cerca de mí</a>
@@ -45,60 +44,133 @@
             <button class="btn btn-outline-primary" type="submit">Buscar</button>
           </form>
           <div class="ms-3">
-            <button class="btn btn-primary">Iniciar Sesión</button>
+            <button class="btn btn-primary" href="../src/pages/login.html">Iniciar Sesión</button>
           </div>
         </div>
       </div>
     </nav>
   </header>
-
-  <main class="container py-5">
-    <h1 class="text-center mb-2">Descubre los mejores restaurantes</h1>
-    <p class="text-center text-muted mb-4">Explora, califica y comparte tus experiencias gastronómicas en Ica</p>
-    
-    <!-- Location permission alert -->
-    <div class="alert alert-info alert-dismissible fade show mb-4" role="alert" id="locationAlert">
-      <i class="fas fa-map-marker-alt me-2"></i>
-      <strong>¡Mejora tu experiencia!</strong> Permítenos acceder a tu ubicación para mostrarte los restaurantes más cercanos.
-      <button type="button" class="btn btn-sm btn-info ms-3" id="enableLocation">Activar ubicación</button>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <section class="container-fluid1">
+    <div id="carrusel-banner" class="container-fluid1">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../public/images/imgRestaurantes/image-banner1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../public/images/imgRestaurantes/image-banner2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="../public/images/imgRestaurantes/image-banner3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
+  </section>
 
-    <!-- Filters -->
+  <section class="container-xl py-4">
+    <h1 class="text-center mb-2 oswald-500">Descubre los mejores restaurantes</h1>
+    <p class="text-center text-muted mb-4">Explora, califica y comparte tus experiencias gastronómicas en Ica</p>
+  </section>
+  <!-- Location permission alert -->
+  <div class="alert alert-info alert-dismissible fade show mb-4" role="alert" id="locationAlert">
+    <i class="fas fa-map-marker-alt me-2"></i>
+    <strong>¡Mejora tu experiencia!</strong> Permítenos acceder a tu ubicación para mostrarte los restaurantes más
+    cercanos.
+    <button type="button" class="btn btn-sm btn-info ms-3" id="enableLocation">Activar ubicación</button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <main class="container-xl py-4">
+    <!-- Filtros -->
     <div class="row mb-4">
       <div class="col-md-12">
         <div class="d-flex flex-wrap align-items-center gap-2">
-          <span class="fw-bold me-2">Filtrar por:</span>
+          <span class="fw-bold me-2 fs-5">Filtrar por:</span>
           <button class="btn btn-outline-secondary btn-sm">Todos</button>
           <button class="btn btn-outline-secondary btn-sm">Cercanos</button>
           <button class="btn btn-outline-secondary btn-sm">Mejor valorados</button>
           <button class="btn btn-outline-secondary btn-sm">Comida criolla</button>
           <button class="btn btn-outline-secondary btn-sm">Internacional</button>
           <button class="btn btn-outline-secondary btn-sm">Cafeterías</button>
-          <button class="btn btn-outline-secondary btn-sm">Más filtros</button>
+          <!-- Botón que activa el modal-->
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
+            data-bs-target="#modal-filtros">
+            Más Filtros
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="modal-filtros" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Filtros</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Chifa</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Brasas</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Criollazo</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Marino</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Parrilla</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Heladería</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Res</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Cerdo</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Sanguchería</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Comida Rápida</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Vinos</button>
+                  <button class="btn m-1 btn-outline-secondary btn-sm">Pisco</button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
-    <!-- Restaurant cards grid -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-      <!-- Restaurant 1 -->
+    <!-- Tarjetas de restaurante aplicadas con grid para cada estilo de pantalla-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 g-2">
+      <!-- Restaurante 1 -->
       <div class="col">
-        <div class="card h-100 shadow-sm hover-shadow" data-latitude="14.1234" data-longitude="-75.7654">
+        <div class="card h-100 shadow-sm hover-shadow" data-latitude="
+        -14.065553" data-longitude="-75.736305">
           <div class="position-relative">
-            <img src="https://via.placeholder.com/300x200?text=Restaurante+1" class="card-img-top" alt="El Huerto">
+            <img src="../public/images/imgRestaurantes/image-norkys.jpeg" class="card-img-top" alt="El Huerto">
             <span class="position-absolute top-0 end-0 bg-light px-2 py-1 m-2 rounded-pill">
               <i class="fas fa-star text-warning"></i> 4.7
             </span>
-            
+
           </div>
           <div class="card-body">
-            <h5 class="card-title">El Huerto</h5>
+            <h5 class="card-title">Norkys</h5>
             <p class="card-text text-muted small">
-              <i class="fas fa-utensils me-2"></i>Comida criolla
+              <i class="fas fa-utensils me-2"></i>Brasas
             </p>
             <p class="card-text text-muted small">
-              <i class="fas fa-map-marker-alt me-2"></i>A 1.2 km de ti
+              <i class="fas fa-map-marker-alt me-2"></i>Calculando distancia...
             </p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <a href="#" class="btn btn-sm btn-outline-primary">Ver detalles</a>
@@ -108,22 +180,24 @@
         </div>
       </div>
 
-      <!-- Restaurant 2 -->
+      <!-- Restaurante 2 -->
       <div class="col">
-        <div class="card h-100 shadow-sm hover-shadow">
+        <div class="card h-100 shadow-sm hover-shadow" data-latitude="-14.085222" data-longitude="-75.735503"
+          data-name="Cordón y la Rosa">
+
           <div class="position-relative">
-            <img src="https://via.placeholder.com/300x200?text=Restaurante+2" class="card-img-top" alt="La Cofradia">
+            <img src="../public/images/imgRestaurantes/image-cordonylarosa.jpg" class="card-img-top" alt="La Cofradia">
             <span class="position-absolute top-0 end-0 bg-light px-2 py-1 m-2 rounded-pill">
               <i class="fas fa-star text-warning"></i> 4.5
             </span>
           </div>
           <div class="card-body">
-            <h5 class="card-title">La Cofradía</h5>
+            <h5 class="card-title">Cordón y la Rosa</h5>
             <p class="card-text text-muted small">
-              <i class="fas fa-utensils me-2"></i>Pescados y mariscos
+              <i class="fas fa-utensils me-2"></i>Comida Criolla
             </p>
             <p class="card-text text-muted small">
-              <i class="fas fa-map-marker-alt me-2"></i>A 0.8 km de ti
+              <i class="fas fa-map-marker-alt me-2"></i>Calculando distancia...
             </p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <a href="#" class="btn btn-sm btn-outline-primary">Ver detalles</a>
@@ -133,22 +207,22 @@
         </div>
       </div>
 
-      <!-- Restaurant 3 -->
+      <!-- Restaurante 3 -->
       <div class="col">
         <div class="card h-100 shadow-sm hover-shadow">
           <div class="position-relative">
-            <img src="https://via.placeholder.com/300x200?text=Restaurante+3" class="card-img-top" alt="El Tambo">
+            <img src="../public/images/imgRestaurantes/image-chifayen.jpg" class="card-img-top" alt="El Tambo">
             <span class="position-absolute top-0 end-0 bg-light px-2 py-1 m-2 rounded-pill">
               <i class="fas fa-star text-warning"></i> 4.2
             </span>
           </div>
           <div class="card-body">
-            <h5 class="card-title">El Tambo</h5>
+            <h5 class="card-title">Yemheng</h5>
             <p class="card-text text-muted small">
-              <i class="fas fa-utensils me-2"></i>Parrilla
+              <i class="fas fa-utensils me-2"></i>Chifa
             </p>
             <p class="card-text text-muted small">
-              <i class="fas fa-map-marker-alt me-2"></i>A 2.5 km de ti
+              <i class="fas fa-map-marker-alt me-2"></i>Calculando distancia...
             </p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <a href="#" class="btn btn-sm btn-outline-primary">Ver detalles</a>
@@ -158,22 +232,22 @@
         </div>
       </div>
 
-      <!-- Restaurant 4 -->
+      <!-- Restaurante 4 -->
       <div class="col">
-        <div class="card h-100 shadow-sm hover-shadow">
+        <div class="card h-100 shadow-sm hover-shadow" data-latitude="-14.055275" data-longitude="-75.756872">
           <div class="position-relative">
-            <img src="https://via.placeholder.com/300x200?text=Restaurante+4" class="card-img-top" alt="Doña Paulina">
+            <img src="../public/images/imgRestaurantes/image-fundo.jpg" class="card-img-top" alt="Doña Paulina">
             <span class="position-absolute top-0 end-0 bg-light px-2 py-1 m-2 rounded-pill">
               <i class="fas fa-star text-warning"></i> 4.8
             </span>
           </div>
           <div class="card-body">
-            <h5 class="card-title">Doña Paulina</h5>
+            <h5 class="card-title">El Fundo</h5>
             <p class="card-text text-muted small">
               <i class="fas fa-utensils me-2"></i>Comida típica
             </p>
             <p class="card-text text-muted small">
-              <i class="fas fa-map-marker-alt me-2"></i>A 3.1 km de ti
+              <i class="fas fa-map-marker-alt me-2"></i>Calculando distancia...
             </p>
             <div class="d-flex justify-content-between align-items-center mt-3">
               <a href="#" class="btn btn-sm btn-outline-primary">Ver detalles</a>
@@ -182,13 +256,9 @@
           </div>
         </div>
       </div>
-
-      <!-- Puedes copiar y pegar el bloque del restaurante para crear más filas -->
-      <!-- Aquí deberías añadir más restaurantes hasta completar las 40 cards (4 columnas x 10 filas) -->
-      <!-- Para esta demostración he incluido solo 4, pero puedes duplicarlos y modificar la información -->
     </div>
 
-    <!-- Pagination -->
+    <!-- Paginación por BootStrap -->
     <nav aria-label="Navegación de páginas" class="my-5">
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
@@ -204,36 +274,38 @@
     </nav>
   </main>
 
+  <!-- Pie de página -->
   <footer class="bg-dark text-white py-4 mt-5">
     <div class="container">
-      <div class="row">
+      <div class="row pie">
         <div class="col-md-4 mb-3">
-          <h5 class="mb-3">StarPe</h5>
-          <p class="small">La plataforma líder de reseñas gastronómicas en Ica, donde los amantes de la comida comparten sus experiencias y descubren nuevos lugares.</p>
+          <h5 class="oswald-500 mb-3 text-warning">Stars</h5>
+          <p class="small text-secondary">La plataforma líder de reseñas gastronómicas en Ica, donde los
+            amantes de la comida comparten sus experiencias y descubren nuevos lugares.</p>
         </div>
         <div class="col-md-2 mb-3">
-          <h5 class="mb-3">Enlaces</h5>
+          <h5 class="oswald-500 mb-3 text-warning">Enlaces</h5>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-decoration-none text-white-50">Inicio</a></li>
-            <li><a href="#" class="text-decoration-none text-white-50">Explorar</a></li>
-            <li><a href="#" class="text-decoration-none text-white-50">Contacto</a></li>
-            <li><a href="#" class="text-decoration-none text-white-50">FAQ</a></li>
+            <li><a href="#" class="text-decoration-none text-secondary">Inicio</a></li>
+            <li><a href="#" class="text-decoration-none text-secondary">Explorar</a></li>
+            <li><a href="#" class="text-decoration-none text-secondary">Contacto</a></li>
+            <li><a href="#" class="text-decoration-none text-secondary">FAQ</a></li>
           </ul>
         </div>
-        <div class="col-md-3 mb-3">
-          <h5 class="mb-3">Síguenos</h5>
-          <div class="d-flex gap-3">
-            <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+        <div class="col-md-3 mb-3 pie">
+          <h5 class="oswald-500 mb-3 text-warning">Síguenos</h5>
+          <div class=" gap-3 pie">
+            <a href="#" class="text-white"><i class="fab fa-facebook-f text-secondary"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram text-secondary"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter text-secondary"></i></a>
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <h5 class="mb-3">Newsletter</h5>
+          <h5 class="oswald-500 mb-3 text-warning">Noticias</h5>
           <form>
             <div class="input-group">
               <input type="email" class="form-control" placeholder="Email">
-              <button class="btn btn-primary" type="button">Suscribir</button>
+              <button class="oswald-500 btn btn-primary" type="button">Suscribir</button>
             </div>
           </form>
         </div>
@@ -241,22 +313,26 @@
       <hr class="my-4">
       <div class="row">
         <div class="col-md-6">
-          <p class="small text-white-50 mb-md-0">© 2025 StarPe. Todos los derechos reservados.</p>
+          <p class="small text-white-50 mb-md-0">© 2025 Stars. Todos los derechos reservados.</p>
         </div>
         <div class="col-md-6 text-md-end">
           <ul class="list-inline small mb-0">
             <li class="list-inline-item"><a href="#" class="text-decoration-none text-white-50">Privacidad</a></li>
-            <li class="list-inline-item"><a href="#" class="text-decoration-none text-white-50">Términos</a></li>
-            <li class="list-inline-item"><a href="#" class="text-decoration-none text-white-50">Cookies</a></li>
+            <li class="list-inline-item"><a href="#" class="text-decoration-none text-white-50">Términos</a>
+            </li>
+            <li class="list-inline-item"><a href="#" class="text-decoration-none text-white-50">Cookies</a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   </footer>
 
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../public/js/main.js"></script>
   <script src="../public/js/rating.js"></script>
   <script src="../public/js/Geolocalizacion.js"></script>
-  </body>
+</body>
+
 </html>
